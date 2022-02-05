@@ -142,6 +142,7 @@ private fun PaintView(viewModel: MainActivityViewModel) {
         val context = LocalContext.current
         AndroidView(factory = { PaintDrawerManager(context)}, modifier = Modifier.padding(top = 10.dp)) {
             it.changeColor(viewModel.toolColor.value.toArgb())
+            it.changeTool(viewModel.selectedDrawingTool.value)
         }
     }
 }
