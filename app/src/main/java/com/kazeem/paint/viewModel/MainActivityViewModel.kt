@@ -1,6 +1,7 @@
 package com.kazeem.paint.viewModel
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.kazeem.paint.R
@@ -17,4 +18,9 @@ class MainActivityViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
         DrawingToolData(Tools.ColorPalette, R.drawable.ic_color_palette),
     )
     val selectedDrawingTool = mutableStateOf(savedStateHandle.get(Utils.selectedDrawingToolKey) ?: Tools.Pencil)
+    val toolColor = mutableStateOf(savedStateHandle.get(Utils.selectedColor) ?: Color.Black)
+
+    fun setToolColor(color: Color) {
+        toolColor.value = color
+    }
 }
