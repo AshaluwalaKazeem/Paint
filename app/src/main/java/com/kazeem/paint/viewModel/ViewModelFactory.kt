@@ -4,10 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class ViewModelFactory(val savedStateHandle: SavedStateHandle) : ViewModelProvider.Factory {
+class ViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
-            return MainActivityViewModel(savedStateHandle = savedStateHandle) as T
+            return MainActivityViewModel() as T
         }
         throw IllegalArgumentException("Unknown View Model Class")
     }

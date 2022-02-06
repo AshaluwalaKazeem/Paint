@@ -54,6 +54,7 @@ class PaintDrawerManager(context: Context) : View(context) {
                     canvas.drawLine(data.x1, data.y1, data.x2, data.y2, data.paint)
                     drawArrowHead(canvas, Point(data.x2.toInt(), data.y2.toInt()), Point(data.x1.toInt(), data.y1.toInt()), data.paint)
                 }
+                else -> {}
             }
         }
         if(selectedTool != null) {
@@ -71,6 +72,7 @@ class PaintDrawerManager(context: Context) : View(context) {
                     canvas.drawLine(x1, y1, x2, y2, paintToChange!!)
                     drawArrowHead(canvas, Point(x2.toInt(), y2.toInt()), Point(x1.toInt(), y1.toInt()), paintToChange!!)
                 }
+                else -> {}
             }
         }
 
@@ -84,6 +86,7 @@ class PaintDrawerManager(context: Context) : View(context) {
         this.tool.value = tool
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         x2 = event.x
         y2 = event.y
@@ -114,6 +117,7 @@ class PaintDrawerManager(context: Context) : View(context) {
                     Tools.Rectangle, Tools.Ellipse, Tools.Arrow -> {
                         brushPathList.add(BrushProperty(x2 = x2, y2 = y2, x1 = x1, y1 = y1, paint = paintToChange!!, tool = selectedTool!!))
                     }
+                    else -> {}
                 }
                 x2 = 0f
                 y2 = 0f

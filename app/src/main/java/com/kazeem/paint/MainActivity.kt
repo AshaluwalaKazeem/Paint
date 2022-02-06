@@ -1,6 +1,7 @@
 package com.kazeem.paint
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -33,8 +34,7 @@ import com.kazeem.paint.viewModel.ViewModelFactory
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val savedStateHandle = SavedStateHandle()
-        val viewModelFactory = ViewModelFactory(savedStateHandle)
+        val viewModelFactory = ViewModelFactory()
         val viewModel =
             ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
         setContent {
@@ -83,7 +83,7 @@ private fun PaintView(viewModel: MainActivityViewModel) {
                             if (toolData.toolType == Tools.ColorPalette) {
                                 expandColorPaletteMenu = true
                             } else {
-                                viewModel.selectedDrawingTool.value = toolData.toolType
+                                viewModel.setTool(toolData.toolType)
                             }
                         },
                         contentPadding = PaddingValues(12.dp),
